@@ -1,0 +1,13 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="col-md-12">
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.text }}</p>
+        <div>
+            <span class="badge">Posted {{ post.updated }}</span>
+        </div>
+    </div>
+</div>
+{% endblock content %}

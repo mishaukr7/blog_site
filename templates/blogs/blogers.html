@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+    <h1 align="center"> Blogers</h1>
+    <div class="container">
+        <div class="row">
+            {% for bloger in blogers %}
+                <div class="col-lg-4">
+                <h2>{{ bloger.username }}</h2>
+                <p>{{ bloger.blog_user }}.</p>
+                    <form action="{% url 'users:subscribe' bloger.blog_user.id %}" method="post">
+                    {% csrf_token %}
+                        {% if request.user in bloger.blog_user.subscribers.all %}
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">
+                                Unsubscribe
+                            </button>
+                        </div>
+                    {% else %}
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">
+                                Subscribe
+                            </button>
+                        </div>
+                    {% endif %}
+                    </form>
+                </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% endblock content %}
